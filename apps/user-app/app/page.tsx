@@ -2,12 +2,13 @@
 
 import { db } from "@repo/db/client";
 import { navbar as Navbar } from "@repo/ui/navbar";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut,useSession } from "next-auth/react";
 
 export default function Home() {
+  const   {data}  = useSession();
   return (
     <div className=" bg-gray-100">
-      <Navbar/>
+      <Navbar onSignIn={signIn} onSignOut={signOut} data={data}  />
     </div>
   );
 }

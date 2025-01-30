@@ -1,4 +1,15 @@
-export const navbar = () => {
+"use client";
+
+interface NavbarProps { 
+  onSignIn: () => void;
+  onSignOut: () => void;
+  data: any;
+}
+export const navbar = ({
+  data,
+  onSignIn,
+  onSignOut,
+}:NavbarProps) => {
   return (
     <nav className="w-full bg-white shadow-sm">
       <div className="flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 justify-between">
@@ -13,7 +24,11 @@ export const navbar = () => {
           {/* Login button on the right */}
           <div className="flex items-center ml-auto">
             <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300">
-              Login
+              { data ? (
+                <span onClick={onSignOut}>Logout</span>
+              ) : (
+                <span onClick={onSignIn}>Sign in</span>
+              )}
             </button>
           </div>
         </div>
